@@ -300,3 +300,4 @@ input {
   .pokemons__wrapper {
    grid-template-columns: repeat(5,1fr); 
   }
+}

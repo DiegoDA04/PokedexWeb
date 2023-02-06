@@ -11,13 +11,27 @@
 </head>
 <body>
   <main>
-    <section class="load-screen">
-      <div class="load-screen__data">
-        <img src="assets/images/pikachu_load_screen.gif" alt="" class="load-screen__img">
+    <section class="load screen">
+      <div class="load__data">
+        <img src="assets/images/pikachu_load_screen.gif" alt="" class="load__img">
 				<p class="load-screen__message">Loading...</p>
 			</div>
-			<p class="load-screen__message">This may take time to load</p>
+			<p class="load__message">This may take time to load</p>
+    </section>
+    <section class="main screen section hidden">
+        <div class="main__header">
+          <h2 class="main__title">Pokedex <span>v2</span> </h2>
+          <p class="main__subtitle">Made with <span>PokeApi</span> </p>
+          <div class="main__filters">
+            <input type="text" class="main__input" placeholder="Pikachu">
+          </div>
+        </div>
+        <div class="pokemons container">
+          <div class="pokemons__wrapper">
+          </div>
+        </div>
     </section>
   </main>
+	<script src="assets/scripts/main.js"></script>
 </body>
 </html>
