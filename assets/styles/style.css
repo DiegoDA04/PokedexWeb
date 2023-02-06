@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap'); 
 
 /* ====== GLOBAL ====== */
 :root{
@@ -18,32 +18,285 @@
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: var(--body-font)
+  font-family: var(--body-font)
+}
+input {
+  border-style: none;
 }
 
+/* ====== REUSABLE CLASSES ====== */
+.section {
+  padding-top: 2rem;
+}
+.screen {
+  height: 100vh;
+}
+
+.container {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
 /* ====== LOAD SCREEN ====== */
 
-.load-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.load {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.load__data {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.load__img {
+  width: 175px;
+}
+.load__message {
+  font-size: var(--h3-font-size);
+}
 
-    height: 100vh;
+/* ====== MAIN SCREEN ====== */
+
+/* ====== MAIN - HEADER ====== */
+
+.main__header {
+  text-align: center;
 }
-.load-screen__data {
-    text-align: center;
-    margin-bottom: 2rem;
+.main__title {
+  font-weight: 500;
+  font-size: var(--big-font-size);
+  margin-bottom: .5rem;
 }
-.load-screen__img {
-    width: 175px;
+.main__title span {
+  font-weight: 400;
+  font-size: var(--h3-font-size);
 }
-.load-screen__message {
-    font-size: var(--h3-font-size);
+.main__subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+
+  margin-bottom: 1.5rem; 
 }
+.main__subtitle span {
+  font-weight: 400;
+  color: #303378;
+}
+
+/* ====== MAIN - FILTERS ====== */
+
+.main__input {
+  padding: .625rem;
+  border: 1px solid #000000;
+  border-radius: .625rem;
+  width: 240px;
+}
+.main__input:focus {
+  outline: none;
+}
+.main__input::placeholder {
+  font-family: var(--body-font);
+  font-weight: 300;
+}
+
+/* ====== MAIN - POKEMONS ====== */
+
+.pokemons {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+
+ padding-top: 1rem;
+ padding-bottom: 1rem;
+}
+
+.pokemons__wrapper {
+  display: grid;
+  align-items: center;
+  gap: 1rem;
+  grid-template-columns: repeat(2,1fr);
+}
+
+/* ====== MAIN - POKEMONS CARD ====== */
+
+.pokemon__card {
+  border-radius: .625rem;
+  padding: 1rem 1rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+}
+.pokemon__data {
+  text-align: center;
+}
+.pokemon__id {
+  font-size: var(--smaller-font-size);
+  font-weight: 400;  
+}
+.pokemon__name {
+  font-size: var(--normal-font-size);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.pokemon__img {
+  width: 80px;   
+}
+
+.pokemon__types {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: .275rem;
+}
+
+.pokemon__type {
+  font-size: .575rem;
+  letter-spacing: .25px;
+  text-align: center;
+  width: 11ch;
+  border-radius: .5rem;
+  padding: .25rem 0;
+  text-transform: uppercase;
+  margin-bottom: .25rem; 
+}
+
+.hidden {
+  display: none;
+}
+
+/* ====== MAIN - POKEMONS BACKGROUND COLOR ====== */
+
+.grass {
+  background: rgba(85, 243, 82, .7);
+}
+.poison {
+  background: rgba(158, 0, 255, 0.7);
+}
+.fire {
+  background: rgba(253, 125, 36, .7);
+}
+.flying {
+  background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+}
+.water {
+  background: rgba(69, 146, 196, .7);
+}
+.bug {
+  background: rgba(114, 159, 63, .7);
+}
+.normal {
+  background: rgba(164, 172, 175, .7);
+}
+.rock {
+  background: rgba(163, 140, 33, 0.7);
+}
+.electric {
+  background: rgba(238, 213, 53, 0.7);
+}
+.ground {
+  background: rgba(171, 152, 66, 0.7);
+}
+.fairy {
+  background: rgba(253, 185, 233, 0.7);
+}
+.steel {
+  background: rgba(158, 183, 184, 0.7);
+}
+.fighting {
+  background: rgba(213, 103, 35, 0.7);
+}
+.psychic {
+  background: rgba(243, 102, 185, 0.7);
+}
+.ghost {
+  background: rgba(123, 98, 163, 0.7);
+}
+/* ====== MAIN - POKEMONS BADGE COLOR ====== */
+
+.badge-grass {
+  background: rgba(85, 243, 82, 1);
+  color: #000000;
+}
+
+.badge-poison {
+  background: rgba(158, 0, 255, 1);
+  color: white;
+}
+.badge-fire {
+  background: rgba(253, 125, 36, .7);
+  color: white;
+}
+.badge-flying {
+  background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
+}
+.badge-water {
+  background: rgba(69, 146, 196, .7);
+  color: white; 
+}
+.badge-bug {
+  background: rgba(114, 159, 63, .7);
+  color: white;
+}
+.badge-normal {
+  background: rgba(164, 172, 175, .7);
+}
+.badge-rock {
+  background: rgba(163, 140, 33, 0.7);
+}
+.badge-electric {
+  background: rgba(238, 213, 53, 0.7);
+}
+.badge-ground {
+  background: rgba(171, 152, 66, 0.7);
+}
+.badge-fairy {
+  background: rgba(253, 185, 233, 0.7);
+}
+.badge-steel {
+  background: rgba(158, 183, 184, 0.7);
+}
+.badge-fighting {
+  background: rgba(213, 103, 35, 0.7);
+  color: white;
+}
+.badge-psychic {
+  background: rgba(243, 102, 185, 0.7);
+  color: white;
+}
+.badge-ghost {
+  background: rgba(123, 98, 163, 0.7);
+  color: white;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 390px) { 
+  .pokemon__card {
+    padding: .825rem .625rem; 
+  }
+  .container {
+    margin-left: .75rem;
+    margin-right: .75rem;
+  }
+  .pokemon__type {
+    font-size: .475rem; 
+  }
+}
+@media screen and (min-width: 550px) {
+  .pokemons__wrapper {
+   grid-template-columns: repeat(3,1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .pokemons__wrapper {
+   grid-template-columns: repeat(4,1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .pokemons__wrapper {
+   grid-template-columns: repeat(5,1fr); 
+  }
