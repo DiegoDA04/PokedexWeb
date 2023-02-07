@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 const baseUrl = 'https://pokeapi.co/api/v2/'
 
 const loadPokemons = async () => {
-    const res = await fetch(`${baseUrl}pokemon?limit=100000&offset=0`)
+    const res = await fetch(`${baseUrl}pokemon?limit=1008&offset=0`)
     const data = await res.json();
 
     const promises = data.results.map( async (pokemon) => {
@@ -41,7 +41,7 @@ const loadPokemons = async () => {
 const createPokemonCards = (pokemons) => pokemons.map( p => `
 <div class="pokemon__card ${p.types[0].type.name}">
     <div class="pokemon__data">
-      <h4 class="pokemon__id">#${p.id.toString().padStart(3,0)} </h4>
+      <h4 class="pokemon__id">#${p.id.toString().padStart(4,0)}</h4>
       <h2 class="pokemon__name">${p.name}</h2>
       <img src="${p.sprites.other['official-artwork'].front_default}" class="pokemon__img" />
       </div>
