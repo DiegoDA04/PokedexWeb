@@ -287,8 +287,10 @@ input {
 /* ====== MAIN - POKEMONS INFORMATION ====== */
 
 .pokemon-info {
-  z-index: 10;
+  background: white; 
   width: 100%;
+  position: fixed;
+  top: 0
 }
 .pokemon-info__data {
   padding: 1.5rem 1.5rem;
@@ -322,6 +324,24 @@ input {
   top: 4.5rem;  
   width: 180px;
 }
+
+.pokemon-info__types {
+  margin-top: 2rem; 
+  margin-left: 1rem;
+}
+.pokemon-info__type {
+  font-size: .875rem;
+  letter-spacing: .25px;
+  text-align: center;
+  width: 11ch;
+  border-radius: .5rem;
+  padding: .25rem 0;
+  text-transform: uppercase;
+  margin-bottom: .45rem; 
+}
+
+/* ====== MAIN - POKEMONS INFORMATION - OPTIONS*/ 
+
 .pokemon-info__options {
   display: flex;
   flex-direction: row;
@@ -334,14 +354,38 @@ input {
   opacity: .6;
   cursor: pointer;
 }
+
 .pokemon-info__item--active {
   opacity: 1;
   cursor: default;
 }
+
+.pokemon-info__option {
+ margin: 1rem 1.75rem;  
+}
+
+.pokemon-info__about-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #838383;
+  margin-bottom: .75rem;
+}
+.pokemon-info__about-text span {
+  color: #000000;
+  font-weight: 600;
+  padding-left: 1rem;
+  text-transform: capitalize;
+}
+
 .hidden {
   display: none;
 }
-
+.front {
+  z-index: 100;
+}
+.back {
+  z-index: 1;
+}
 /* MEDIA QUERIES */
 @media screen and (max-width: 395px) { 
   .pokemon__card {
