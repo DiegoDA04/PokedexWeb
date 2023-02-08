@@ -7,12 +7,16 @@ window.addEventListener('DOMContentLoaded', async () => {
    
     // Render Pokemons
     renderPokemons(pokemonData)
+    const pokemonCards = document.querySelectorAll(".pokemon__card")
 
     // Hide loading Screen
     hideLoadingScreen();
 
     // Show Pokedex
     showPokedex();
+
+    //Pokemon Info
+    showPokemonInfo(pokemonCards, pokemonData)
 })
 
 
@@ -21,7 +25,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 const baseUrl = 'https://pokeapi.co/api/v2/'
 
 const loadPokemons = async () => {
-    const res = await fetch(`${baseUrl}pokemon?limit=1008&offset=0`)
+    const res = await fetch(`${baseUrl}pokemon?limit=20&offset=0`)
     const data = await res.json();
 
     const promises = data.results.map( async (pokemon) => {
@@ -39,7 +43,7 @@ const loadPokemons = async () => {
 // Create Pokemons Cards
 
 const createPokemonCards = (pokemons) => pokemons.map( p => `
-<div class="pokemon__card ${p.types[0].type.name}">
+<div class="pokemon__card ${p.types[0].type.name}" id="${p.id}">
     <div class="pokemon__data">
       <h4 class="pokemon__id">#${p.id.toString().padStart(4,0)}</h4>
       <h2 class="pokemon__name">${p.name}</h2>
@@ -50,13 +54,35 @@ const createPokemonCards = (pokemons) => pokemons.map( p => `
     </div> 
 </div>`).join(" ")
 
+const createPokemonInfo = (pokemon) => `
+  <div class="pokemon-info__data ${pokemon.types[0].type.name}"> 
+  <h2 class="pokemon-info__id">#${pokemon.id.toString().padStart(4,0)}</h2>
+  <h3 class="pokemon-info__name">${pokemon.name}</h3>
+  <img src="${pokemon.sprites.other['official-artwork'].front_default}" class="pokemon-info__img"> 
+  <div class="pokemon-info__close">
+    <i class="fa-solid fa-xmark"></i>
+  </div>
+</div> 
+<div class="pokemon-info__options">
+    <p class="pokemon-info__item pokemon-info__item--active">About</p>
+    <p class="pokemon-info__item">Evolutions</p>
+    <p class="pokemon-info__item">Moves</p>
+  </div>
+`
+
 // Render
 
 const container = document.querySelector('.pokemons__wrapper')
+const infoContainer = document.querySelector(".pokemon-info")
 
 const renderPokemons = (pokemons) => {
     const items = createPokemonCards(pokemons)
     container.innerHTML = items;
+}
+
+const renderPokemonInfo = (pokemon) => {
+    const item = createPokemonInfo(pokemon)
+    infoContainer.innerHTML = item;
 }
 
 // Loading
@@ -72,6 +98,7 @@ const main = document.querySelector(".main")
 const showPokedex = () => main.classList.remove("hidden")
 
 // Events 
+
 const input = document.querySelector(".main__input")
 
 input.addEventListener("keyup", (e) => {
@@ -79,3 +106,20 @@ input.addEventListener("keyup", (e) => {
 
     input.value.length !== 0 ? renderPokemons(newPokemons) : renderPokemons(pokemonData)
 })
+
+const showPokemonInfo = (cards, pokemons) => cards.forEach(c => c.addEventListener('click', () => {
+    
+    main.classList.add('hidden')
+    infoContainer.classList.remove('hidden')
+
+    renderPokemonInfo(pokemons[c.id - 1])
+
+    const closeBtn = document.querySelector('.pokemon-info__close')
+    closeBtn.addEventListener('click', () => {
+        main.classList.remove('hidden')
+        infoContainer.classList.add('hidden')
+    })
+
+}))
+
+
