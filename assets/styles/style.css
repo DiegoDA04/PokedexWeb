@@ -369,6 +369,7 @@ input {
   font-weight: 500;
   color: #838383;
   margin-bottom: .75rem;
+  text-transform: capitalize;
 }
 .pokemon-info__about-text span {
   color: #000000;

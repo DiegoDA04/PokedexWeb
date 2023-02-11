@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 const baseUrl = 'https://pokeapi.co/api/v2/'
 
 const loadPokemons = async () => {
-    const res = await fetch(`${baseUrl}pokemon?limit=512&offset=0`)
+    const res = await fetch(`${baseUrl}pokemon?limit=20&offset=0`)
     const data = await res.json();
 
     const promises = data.results.map( async (pokemon) => {
@@ -67,16 +67,25 @@ const createPokemonInfo = (pokemon) => `
     </div>
   </div> 
   <div class="pokemon-info__options">
-    <p class="pokemon-info__item pokemon-info__item--active" id="pokemon-about">About</p>
-    <p class="pokemon-info__item " id="pokemon-stats">Stats</p>
-    <p class="pokemon-info__item" id="pokemon-evolutions">Evolutions</p>
-    <p class="pokemon-info__item" id"pokemon-moves">Moves</p>
+    <p class="pokemon-info__item pokemon-info__item--active" id="about">About</p>
+    <p class="pokemon-info__item" id="stats">Stats</p>
+    <p class="pokemon-info__item" id="evolutions">Evolutions</p>
+    <p class="pokemon-info__item" id="moves">Moves</p>
   </div>
   <div class="pokemon-info__option">
-    <div class="pokemon-info__about">
+    <div class="pokemon-info__container" id="option-about">
       <p class="pokemon-info__about-text"> Height: <span>${pokemon.height/ 10} m </span></p>
       <p class="pokemon-info__about-text"> Weight: <span>${pokemon.weight / 10} kg</span></p> 
       <p class="pokemon-info__about-text"> Abilities: <span>${pokemon.abilities.map( a => `${a.ability.name}`).join(", ")}</span></p>  
+    </div>
+    <div class="pokemon-info__container hidden" id="option-stats">
+      ${pokemon.stats.map( s => `<p class="pokemon-info__about-text"> ${s.stat.name.replace('-',' ')} </p>`).join("")} 
+    </div>
+    <div class="pokemon-info__container hidden" id="option-evolutions">
+      <p> evolutions </p>
+    </div>
+    <div class="pokemon-info__container hidden" id="option-moves">
+      <p>moves</p>
     </div>
   </div>`
 
@@ -139,6 +148,27 @@ const showPokemonInfo = (cards, pokemons) => cards.forEach(c => c.addEventListen
         infoContainer.classList.add('hidden')
     })
 
+    const navInfo = document.querySelectorAll('.pokemon-info__item')
+
+    navInfo.forEach( i => {
+      i.addEventListener('click', () => {
+        navInfo.forEach( i => i.classList.remove('pokemon-info__item--active'))
+        i.classList.add('pokemon-info__item--active')
+
+        const info = document.querySelectorAll('.pokemon-info__container')
+        info.forEach(c => {
+          c.classList.add('hidden')
+        })
+        info.forEach(c => {
+          if(c.id === `option-${i.id}`) {
+            c.classList.remove('hidden')
+          }
+        })
+      }) 
+    })
+
+    
 }))
+
 
 
