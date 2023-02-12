@@ -78,8 +78,31 @@ const createPokemonInfo = (pokemon) => `
       <p class="pokemon-info__about-text"> Weight: <span>${pokemon.weight / 10} kg</span></p> 
       <p class="pokemon-info__about-text"> Abilities: <span>${pokemon.abilities.map( a => `${a.ability.name}`).join(", ")}</span></p>  
     </div>
-    <div class="pokemon-info__container hidden" id="option-stats">
-      ${pokemon.stats.map( s => `<p class="pokemon-info__about-text"> ${s.stat.name.replace('-',' ')} </p>`).join("")} 
+    <div class="pokemon-info__container flex hidden" id="option-stats"> 
+      <div>
+        <p class="pokemon-info__about-text space">HP</p>
+        <p class="pokemon-info__about-text space">Attack</p>
+        <p class="pokemon-info__about-text space">Deffense</p>
+        <p class="pokemon-info__about-text space">Sp. Atk</p>
+        <p class="pokemon-info__about-text space">Sp. Def</p>
+        <p class="pokemon-info__about-text space">Speed</p>
+      </div>
+      <div>
+        <p class="pokemon-info__about-text no-space"><span>${pokemon.stats[0].base_stat}</span></p>
+        <p class="pokemon-info__about-text no-space"><span>${pokemon.stats[1].base_stat}</span></p>
+        <p class="pokemon-info__about-text no-space"><span>${pokemon.stats[2].base_stat}</span></p>
+        <p class="pokemon-info__about-text no-space"><span>${pokemon.stats[3].base_stat}</span></p>
+        <p class="pokemon-info__about-text no-space"><span>${pokemon.stats[4].base_stat}</span></p>
+        <p class="pokemon-info__about-text no-space"><span>${pokemon.stats[5].base_stat}</span></p>
+      </div>
+      <div>
+        <div class="pokemon-info__bar"> <div class="progress" style="width: ${pokemon.stats[0].base_stat}%; "></div></div>
+        <div class="pokemon-info__bar"> <div class="progress" style="width: ${pokemon.stats[1].base_stat}%; "></div></div>
+        <div class="pokemon-info__bar"> <div class="progress" style="width: ${pokemon.stats[2].base_stat}%; "></div></div>
+        <div class="pokemon-info__bar"> <div class="progress" style="width: ${pokemon.stats[3].base_stat}%; "></div></div>
+        <div class="pokemon-info__bar"> <div class="progress" style="width: ${pokemon.stats[4].base_stat}%; "></div></div>
+        <div class="pokemon-info__bar"> <div class="progress" style="width: ${pokemon.stats[5].base_stat}%; "></div></div>
+      </div>
     </div>
     <div class="pokemon-info__container hidden" id="option-evolutions">
       <p> evolutions </p>
@@ -149,6 +172,7 @@ const showPokemonInfo = (cards, pokemons) => cards.forEach(c => c.addEventListen
     })
 
     const navInfo = document.querySelectorAll('.pokemon-info__item')
+    const progress = document.querySelector('.progress')
 
     navInfo.forEach( i => {
       i.addEventListener('click', () => {
