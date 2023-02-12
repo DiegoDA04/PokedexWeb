@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 const baseUrl = 'https://pokeapi.co/api/v2/'
 
 const loadPokemons = async () => {
-    const res = await fetch(`${baseUrl}pokemon?limit=20&offset=0`)
+    const res = await fetch(`${baseUrl}pokemon?limit=512&offset=0`) 
     const data = await res.json();
 
     const promises = data.results.map( async (pokemon) => {
